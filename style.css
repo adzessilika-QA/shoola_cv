@@ -1,0 +1,1012 @@
+/* ===== ПРЕМИАЛЬНЫЙ ДИЗАЙН ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-deep: #0a0c0f;
+  --bg-soft: #14171c;
+  --bg-card: #1e2229;
+  --accent-primary: #c9a87c;
+  --accent-light: #e5d5b3;
+  --accent-deep: #8b7a5a;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b7c0;
+  --text-soft: #8a9099;
+  --border-glow: rgba(201, 168, 124, 0.15);
+  --shadow-luxury: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+  --shadow-gold: 0 20px 40px -15px rgba(201, 168, 124, 0.3);
+  --transition-luxury: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  --transition-smooth: all 0.4s ease;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Декоративный фон */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(201, 168, 124, 0.03) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 100% 100%,
+      rgba(201, 168, 124, 0.03) 0%,
+      transparent 50%
+    ),
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.01) 0px,
+      rgba(255, 255, 255, 0.01) 1px,
+      transparent 1px,
+      transparent 10px
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  max-width: 1400px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 25px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== ЛЕВАЯ КОЛОНКА ===== */
+.left-column {
+  background: var(--bg-card);
+  border-radius: 40px;
+  padding: 35px 30px;
+  box-shadow: var(--shadow-luxury);
+  border: 1px solid var(--border-glow);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-luxury);
+}
+
+.left-column::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    135deg,
+    var(--accent-primary),
+    transparent 50%,
+    var(--accent-primary)
+  );
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  z-index: -1;
+  border-radius: 42px;
+}
+
+.left-column:hover::before {
+  opacity: 0.15;
+}
+
+/* ===== ФОТО С ЗОЛОТОЙ РАМКОЙ ===== */
+.profile-photo {
+  width: 100%;
+  max-width: 260px;
+  margin: 0 auto 25px;
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 30px 40px -20px rgba(0, 0, 0, 0.5);
+  transition: var(--transition-luxury);
+  aspect-ratio: 3/4.5;
+  background: transparent;
+  border: 3px solid transparent;
+  background-image:
+    linear-gradient(var(--bg-card), var(--bg-card)),
+    linear-gradient(
+      135deg,
+      var(--accent-primary),
+      var(--accent-light),
+      var(--accent-deep)
+    );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+/* Мягкий светлый градиентный фон */
+.profile-photo::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  background: linear-gradient(
+    135deg,
+    rgba(230, 210, 180, 0.3) 0%,
+    rgba(200, 180, 150, 0.2) 50%,
+    rgba(170, 150, 130, 0.15) 100%
+  );
+  z-index: 1;
+  opacity: 0.5;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  border-radius: 22px;
+}
+
+/* Эффект свечения */
+.profile-photo .glow {
+  position: absolute;
+  inset: -15px;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(201, 168, 124, 0.4),
+    transparent 70%
+  );
+  filter: blur(15px);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  z-index: 0;
+  border-radius: 40px;
+}
+
+.profile-photo:hover .glow {
+  opacity: 1;
+}
+
+/* Эффект параллакса */
+.profile-photo .overlay {
+  position: absolute;
+  inset: 3px;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.2),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 2;
+  border-radius: 22px;
+}
+
+.profile-photo:hover .overlay {
+  opacity: 1;
+}
+
+.profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 2%;
+  display: block;
+  transition: transform 0.5s ease;
+  transform: scale(1.02);
+  position: relative;
+  z-index: 1;
+  filter: contrast(1.02) brightness(1.05);
+  border-radius: 22px;
+}
+
+.profile-photo:hover img {
+  transform: scale(1.05);
+  object-position: center 1%;
+}
+
+.profile-photo:hover {
+  border-image: linear-gradient(
+      135deg,
+      var(--accent-light),
+      var(--accent-primary),
+      var(--accent-deep)
+    )
+    1;
+  box-shadow: 0 0 20px rgba(201, 168, 124, 0.5);
+}
+
+.profile-photo:hover::before {
+  opacity: 0.7;
+}
+
+/* Имя в левой колонке (для мобильных) */
+.left-column h1 {
+  font-family: "Inter", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent-light);
+  text-align: center;
+  margin-bottom: 5px;
+  display: none;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 10px rgba(201, 168, 124, 0.3);
+}
+
+.left-column .subtitle {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 25px;
+  display: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Заголовки */
+h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  margin-bottom: 18px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-primary), transparent);
+  transition: width 0.4s ease;
+}
+
+h2:hover::after {
+  width: 80px;
+}
+
+/* ===== КОНТАКТЫ С EMAIL НА ОДНОЙ СТРОКЕ ===== */
+.contact-item {
+  display: flex;
+  align-items: center; /* Выравнивание по центру */
+  gap: 12px;
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 15px;
+  margin-bottom: 8px;
+  transition: var(--transition-smooth);
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-item::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 168, 124, 0.2), transparent);
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.8s ease,
+    height 0.8s ease;
+  z-index: 0;
+}
+
+.contact-item:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.contact-item:hover {
+  background: rgba(201, 168, 124, 0.05);
+  border-color: var(--accent-primary);
+  transform: translateX(5px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.contact-item i {
+  width: 20px;
+  font-size: 1.1rem;
+  color: var(--accent-primary);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  transition: var(--transition-smooth);
+}
+
+.contact-item:hover i {
+  transform: scale(1.1) rotate(3deg);
+  color: var(--accent-light);
+}
+
+/* EMAIL НА ОДНОЙ СТРОКЕ */
+.contact-item span,
+.contact-item a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.85rem; /* Уменьшен размер */
+  line-height: 1.2;
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease;
+  white-space: nowrap; /* ЗАПРЕЩАЕМ ПЕРЕНОС */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Многоточие если не влезает */
+  letter-spacing: -0.2px; /* Уплотняем буквы */
+}
+
+.contact-item:hover span,
+.contact-item:hover a {
+  color: var(--text-primary);
+}
+
+.contact-item a:hover {
+  color: var(--accent-light);
+}
+
+/* Разделитель */
+.divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-primary),
+    transparent
+  );
+  margin: 25px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.divider::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-light),
+    transparent
+  );
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Языки */
+.language-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  margin-bottom: 6px;
+  transition: var(--transition-smooth);
+  border: 1px solid transparent;
+}
+
+.language-item:hover {
+  background: rgba(201, 168, 124, 0.05);
+  border-color: var(--border-glow);
+  transform: translateY(-2px);
+}
+
+.lang-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.lang-level {
+  color: var(--accent-primary);
+  font-weight: 600;
+  background: rgba(201, 168, 124, 0.1);
+  padding: 2px 10px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  backdrop-filter: blur(5px);
+}
+
+.lang-progress {
+  display: flex;
+  gap: 5px;
+  margin: 5px 0 12px 12px;
+}
+
+.lang-progress span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-soft);
+  transition: var(--transition-smooth);
+}
+
+.lang-progress span.filled {
+  background: var(--accent-primary);
+  box-shadow: 0 0 8px var(--accent-primary);
+}
+
+.lang-progress span.filled:hover {
+  transform: scale(1.3);
+  background: var(--accent-light);
+}
+
+/* Кнопка PDF */
+.pdf-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, rgba(201, 168, 124, 0.1), transparent);
+  border: 1px solid var(--accent-primary);
+  color: var(--accent-primary);
+  padding: 14px 18px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: var(--transition-luxury);
+  margin: 20px 0 10px;
+  width: 100%;
+  text-align: center;
+  word-break: break-word;
+  line-height: 1.3;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  backdrop-filter: blur(5px);
+}
+
+.pdf-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-primary), transparent);
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.8s ease,
+    height 0.8s ease;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.pdf-btn:hover::before {
+  width: 400px;
+  height: 400px;
+}
+
+.pdf-btn:hover {
+  background: var(--accent-primary);
+  color: var(--bg-deep);
+  border-color: var(--accent-light);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px -10px var(--accent-primary);
+}
+
+.pdf-btn i {
+  font-size: 1rem;
+  transition: transform 0.4s ease;
+}
+
+.pdf-btn:hover i {
+  transform: rotate(-10deg) scale(1.1);
+}
+
+/* ===== ПРАВАЯ КОЛОНКА ===== */
+.right-column {
+  background: var(--bg-card);
+  border-radius: 40px;
+  padding: 40px 35px;
+  box-shadow: var(--shadow-luxury);
+  border: 1px solid var(--border-glow);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-luxury);
+}
+
+.right-column::before {
+  content: "";
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(
+    circle,
+    rgba(201, 168, 124, 0.03),
+    transparent 70%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.right-column::after {
+  content: "";
+  position: absolute;
+  bottom: -100px;
+  left: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(
+    circle,
+    rgba(201, 168, 124, 0.03),
+    transparent 70%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.right-column h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+  margin-bottom: 10px;
+  letter-spacing: -1.5px;
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 2px 20px rgba(201, 168, 124, 0.3);
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(201, 168, 124, 0.1);
+  color: var(--accent-light);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 5px 18px;
+  border-radius: 50px;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 1px solid rgba(201, 168, 124, 0.2);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.badge::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, var(--accent-primary), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  border-radius: 52px;
+  z-index: -1;
+}
+
+.badge:hover::before {
+  opacity: 0.2;
+}
+
+/* ===== ТАБЫ НА ОДНОМ УРОВНЕ ===== */
+.tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: nowrap;
+  margin: 25px 0 20px;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.tab-btn {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  padding: 12px 5px;
+  border-radius: 40px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  border: 1px solid rgba(201, 168, 124, 0.2);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.tab-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    var(--accent-primary),
+    var(--accent-deep)
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -2;
+  border-radius: 40px;
+}
+
+.tab-btn::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: var(--bg-card);
+  border-radius: 39px;
+  z-index: -1;
+  transition: opacity 0.4s ease;
+}
+
+.tab-btn:hover {
+  color: var(--accent-light);
+  transform: translateY(-2px);
+  border-color: var(--accent-primary);
+}
+
+.tab-btn:hover::before {
+  opacity: 0.5;
+}
+
+.tab-btn.active {
+  color: var(--bg-deep);
+  border: 1px solid transparent;
+}
+
+.tab-btn.active::before {
+  opacity: 1;
+}
+
+.tab-btn.active::after {
+  opacity: 0;
+}
+
+/* Контент табов */
+.tab-content {
+  display: none;
+  animation: fadeInUp 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  background: rgba(255, 255, 255, 0.02);
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid var(--border-glow);
+  backdrop-filter: blur(10px);
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tab-content h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  margin-bottom: 5px;
+}
+
+.tab-content p {
+  color: var(--text-secondary);
+  margin-bottom: 15px;
+  font-size: 0.85rem;
+}
+
+.tab-content ul {
+  list-style: none;
+}
+
+.tab-content li {
+  margin-bottom: 12px;
+  padding-left: 25px;
+  position: relative;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  transition: transform 0.3s ease;
+}
+
+.tab-content li:hover {
+  transform: translateX(5px);
+  color: var(--text-primary);
+}
+
+.tab-content li::before {
+  content: "✦";
+  color: var(--accent-primary);
+  font-size: 1rem;
+  position: absolute;
+  left: 0;
+  top: -2px;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.tab-content li:hover::before {
+  opacity: 1;
+  transform: scale(1.2) rotate(5deg);
+  text-shadow: 0 0 10px var(--accent-primary);
+}
+
+/* Текст "обо мне" */
+.about-text {
+  background: rgba(255, 255, 255, 0.02);
+  padding: 20px;
+  border-radius: 20px;
+  border-left: 3px solid var(--accent-primary);
+  margin: 20px 0 25px;
+  line-height: 1.6;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  backdrop-filter: blur(10px);
+  transition: var(--transition-smooth);
+}
+
+.about-text:hover {
+  border-left-width: 5px;
+  background: rgba(201, 168, 124, 0.05);
+  transform: translateX(5px);
+}
+
+/* Ключевые результаты */
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin: 25px 0 10px;
+}
+
+.result-card {
+  background: rgba(255, 255, 255, 0.02);
+  padding: 18px 8px;
+  border-radius: 20px;
+  text-align: center;
+  border: 1px solid var(--border-glow);
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+}
+
+.result-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 0%,
+    var(--accent-primary),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+.result-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-gold);
+}
+
+.result-card:hover::before {
+  opacity: 0.15;
+}
+
+.result-number {
+  display: block;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--accent-primary);
+  line-height: 1;
+  margin-bottom: 5px;
+  text-shadow: 0 0 15px rgba(201, 168, 124, 0.3);
+}
+
+.result-label {
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.gold-star {
+  color: var(--accent-primary);
+  font-weight: 700;
+  display: inline-block;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Футер */
+.copyright {
+  text-align: center;
+  margin-top: 40px;
+  color: var(--text-soft);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position: relative;
+  padding-top: 20px;
+}
+
+.copyright::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-primary),
+    transparent
+  );
+}
+
+/* ===== АДАПТАЦИЯ ===== */
+@media (max-width: 1000px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .left-column h1,
+  .left-column .subtitle {
+    display: block;
+  }
+
+  .right-column h1 {
+    display: none;
+  }
+
+  .results-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tabs {
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    flex: 1 1 calc(33.333% - 8px);
+    white-space: normal;
+  }
+}
+
+@media (max-width: 700px) {
+  .right-column {
+    padding: 30px 25px;
+  }
+
+  .right-column h2 {
+    font-size: 1rem;
+  }
+
+  .results-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .tabs {
+    flex-direction: column;
+  }
+
+  .tab-btn {
+    width: 100%;
+    white-space: normal;
+  }
+
+  .profile-photo {
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 400px) {
+  body {
+    padding: 10px;
+  }
+
+  .left-column,
+  .right-column {
+    padding: 25px 15px;
+  }
+
+  .right-column h1 {
+    font-size: 2.5rem;
+  }
+
+  .profile-photo {
+    max-width: 200px;
+  }
+
+  .about-text {
+    padding: 15px;
+    font-size: 0.85rem;
+  }
+
+  .contact-item {
+    padding: 8px 10px;
+  }
+}
+
+/* ===== КАСТОМНЫЙ СКРОЛЛ ===== */
+::-webkit-scrollbar {
+  width: 8px;
+  background: var(--bg-deep);
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    135deg,
+    var(--accent-deep),
+    var(--accent-primary)
+  );
+  border-radius: 4px;
+  border: 1px solid var(--bg-deep);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
